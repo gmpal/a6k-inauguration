@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Jumeaux Numériques & Coût Computationnel - WEL-T</title>
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/white.min.css">
+
+    <!-- Custom Style for ULB/Scientific look -->
+    <style>
+        :root {
+            --ulb-blue: #003366;
+            --ulb-light: #e6f2ff;
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            color: var(--ulb-blue);
+            text-transform: none;
+        }
+        .reveal .progress {
+            color: var(--ulb-blue);
+        }
+        .highlight {
+            color: #d63384;
+            font-weight: bold;
+        }
+        .box {
+            background-color: rgba(0, 51, 102, 0.05);
+            border-left: 5px solid var(--ulb-blue);
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .small-text {
+            font-size: 0.6em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Titre -->
+            <section>
+                <h3>Quand la réalité rencontre le virtuel</h3>
+                <h2 class="r-fit-text">Les Jumeaux Numériques<br>et leur coût computationnel</h2>
+                <p style="margin-top: 50px; font-size: 0.8em;">
+                    <strong>Projet WEL-T: EDITS</strong><br>
+                    <span style="color: #666;">Enhancing DIgital TwinS with scalable and interpretable AI</span>
+                </p>
+                <div style="margin-top: 30px; font-size: 0.6em;">
+                    Gian Marco Paldino <br> Université libre de Bruxelles - Machine Learning Group
+                </div>
+            </section>
+
+            <!-- SLIDE 2: Le concept (Teaser) -->
+            <section>
+                <h3>Le Jumeau Numérique (DT)</h3>
+                <p class="fragment">Ce n'est pas juste une maquette 3D.</p>
+                <div class="fragment box">
+                    C'est un avatar dynamique qui :
+                    <ul>
+                        <li><strong>Émule</strong> le système physique (PT)</li>
+                        <li><strong>Explique</strong> ses comportements</li>
+                        <li><strong>Anticipe</strong> les pannes (Predictive maintenance)</li>
+                        <li><strong>Agit</strong> en retour sur le réel (Feedback loop)</li>
+                    </ul>
+                </div>
+                <p class="fragment small-text">Exemples : TrafficTwin (Mobilité), EnergyTwin (Éolien), IoT.</p>
+            </section>
+
+            <!-- SLIDE 3: Le projet EDITS -->
+            <section>
+                <h3>Le Projet EDITS (WEL-T)</h3>
+                <p>Le défi actuel des Jumeaux Numériques ?</p>
+                <p class="highlight fragment">Ils manquent souvent d'intelligence.</p>
+                <div class="fragment">
+                    <p>Notre objectif :</p>
+                    <ol>
+                        <li>Calibrer des modèles physiques avec des <strong>flux de données massifs</strong>.</li>
+                        <li>Rendre l'IA <strong>interprétable</strong> (ne pas être une boîte noire).</li>
+                        <li>Permettre le raisonnement <strong>contrefactuel</strong>.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: La Causalité -->
+            <section>
+                <h3>Pourquoi la Corrélation ne suffit pas</h3>
+                <p>Pour piloter un système (ville, usine, réseau électrique), il faut répondre à :</p>
+                <h4 class="fragment">"Que se passe-t-il SI... ?"</h4>
+                <div class="fragment box">
+                    <ul>
+                        <li><em>Si je ferme cette route ?</em> (Intervention)</li>
+                        <li><em>Si j'avais augmenté la maintenance ?</em> (Contrefactuel)</li>
+                    </ul>
+                </div>
+                <p class="fragment">
+                    C'est le domaine de la <strong>Causalité</strong>.<br>
+                    <span class="small-text">Sans causalité, un Jumeau Numérique est juste un observateur passif.</span>
+                </p>
+            </section>
+
+            <!-- SLIDE 5: Le coût caché -->
+            <section>
+                <h3>La découverte causale a un prix</h3>
+                <p>Passer de la donnée brute au graphe causal est coûteux.</p>
+                <div class="r-stack">
+                    <div class="fragment fade-in-then-out">
+                        <h4>1. L'approche classique</h4>
+                        <p>Tests statistiques (Granger, PCMCI).</p>
+                        <p class="highlight">Problème : Explosion combinatoire $O(N^2)$ ou pire.</p>
+                    </div>
+                    <div class="fragment fade-in-then-out">
+                        <h4>2. L'approche EDITS (TD2C)</h4>
+                        <p>Transformer la causalité en problème de <em>Pattern Recognition</em> supervisé.</p>
+                        <p class="highlight">Problème : Nécessite l'entraînement sur des milliards de scénarios synthétiques.</p>
+                    </div>
+                    <div class="fragment fade-in">
+                        <h4>3. Foundation Models</h4>
+                        <p>Entraîner un "GPT de la causalité" capable de généraliser.</p>
+                        <p class="highlight">Conséquence : Besoin massif de GPU.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Le mur computationnel -->
+            <section>
+                <h3>Le "Mur" Computationnel</h3>
+                <p>Un Jumeau Numérique réaliste, c'est :</p>
+                <ul>
+                    <li class="fragment">Des flux de données en <strong>temps réel</strong> (Streaming).</li>
+                    <li class="fragment">Une haute dimensionnalité (> 150 capteurs pour une éolienne).</li>
+                    <li class="fragment">Une mise à jour constante des modèles (Online Learning).</li>
+                </ul>
+                <div class="fragment box" style="text-align: center; border-color: #d63384;">
+                    <strong>Un laptop de chercheur ne suffit plus.</strong>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: Infrastructure ULB -->
+            <section>
+                <h3>L'infrastructure comme moteur</h3>
+                <p>Pour EDITS, nous ne faisons pas que du code, nous consommons du silicium.</p>
+                
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <div class="fragment" style="flex: 1; background: #f4f4f4; padding: 15px; border-radius: 8px;">
+                        <h4>LYRA (Stockage)</h4>
+                        <p style="font-size: 0.8em;">Le "Data Lake" du projet.</p>
+                        <ul style="font-size: 0.7em;">
+                            <li>Historique de trafic (Bruxelles)</li>
+                            <li>Données SCADA éoliennes (10 ans, haute fréquence)</li>
+                            <li>Architecture Lambda (Batch + Speed layers)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="fragment" style="flex: 1; background: #e6f2ff; padding: 15px; border-radius: 8px;">
+                        <h4>HYPERION (Calcul)</h4>
+                        <p style="font-size: 0.8em;">Le "Cerveau" de l'entraînement.</p>
+                        <ul style="font-size: 0.7em;">
+                            <li>Entraînement des modèles de substitution (Surrogates)</li>
+                            <li>Découverte causale à large échelle</li>
+                            <li>Simulation Monte-Carlo des scénarios "What-if"</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: Étude de cas (Wind Farm) -->
+            <section>
+                <h3>Concrètement : EnergyTwin</h3>
+                <p>Jumeau numérique d'un parc éolien.</p>
+                <div style="font-size: 0.8em;">
+                    <ul>
+                        <li class="fragment"><strong>Données :</strong> 150 variables/turbine x 10 ans x 10 min.</li>
+                        <li class="fragment"><strong>Défi :</strong> Prédire les pannes via l'analyse causale d'événements rares.</li>
+                        <li class="fragment"><strong>Besoin :</strong> Rejouer le passé (Backtesting) avec des configurations différentes (Contrefactuels).</li>
+                    </ul>
+                </div>
+                <p class="fragment highlight" style="margin-top: 20px;">Impossible sans HPC (High Performance Computing).</p>
+            </section>
+
+            <!-- SLIDE 9: Conclusion -->
+            <section>
+                <h3>Conclusion</h3>
+                <p>Le projet WEL-T <strong>EDITS</strong> vise à créer des Jumeaux Numériques de nouvelle génération.</p>
+                <br>
+                <p class="fragment">Cette intelligence (Causalité, Interprétabilité) a un coût.</p>
+                <div class="fragment box">
+                    La réussite scientifique dépend de la convergence entre :
+                    <br>1. L'excellence algorithmique (MLG)
+                    <br>2. La puissance de feu infrastructurelle (Lyra/Hyperion)
+                </div>
+            </section>
+
+            <!-- SLIDE 10: Fin -->
+            <section>
+                <h2>Merci</h2>
+                <p>Questions ?</p>
+                <p style="font-size: 0.6em; margin-top: 50px;">
+                    Gian Marco Paldino<br>
+                    Machine Learning Group, ULB
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [ ] 
+        });
+    </script>
+</body>
+</html>
